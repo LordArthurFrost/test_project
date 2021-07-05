@@ -1,45 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 void main() {
-  runApp(MaterialApp(
-      home: Scaffold(
-    body: Column(children: [
-      Counter(increment: 2),
-      Counter(increment: 1),
-    ]),
-    appBar: AppBar(
-      title: Text("METANIT.COM"),
-      backgroundColor: Colors.amberAccent,
-    ),
-  )));
+  runApp(Container(
+    alignment: Alignment.center,
+    color: HexColor('#4bad4f'),
+    child: Container(
+        alignment: Alignment.center,
+        color: HexColor('#9a27ae'),
+        margin: EdgeInsets.all(50),
+        child: Container(
+            alignment: Alignment.center,
+            color: HexColor('#2194f0'),
+            margin: EdgeInsets.all(50))),
+  ));
 }
-
-class Counter extends StatefulWidget {
-  int increment = 1;
-
-  Counter({Key key, this.increment}) : super(key: key); //Не работает, хотя написано так
-  //рабочий вариант
-  //  Counter({Key? key, required this.increment}) : super(key: key);
-
-  @override
-  _CounterState createState() => _CounterState();
+/*
+void main() {
+  runApp(Container(
+      color: Colors.white,
+      padding: EdgeInsets.only(top: 40, bottom: 10, left: 20, right: 20),
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        textDirection: TextDirection.ltr,
+        children: <Widget>[
+          Container(
+            width: 240,
+            height: 240,
+            color: Colors.blueGrey,
+          ),
+          Container(
+            width: 220,
+            height: 220,
+            color: Colors.black12,
+          ),
+          Text(
+            "Flutter на metanit.com",
+            textDirection: TextDirection.ltr,
+            softWrap: true,
+            style: TextStyle(fontSize: 20),
+          ),
+        ],
+      )));
 }
-
-class _CounterState extends State<Counter> {
-  int value = 0;
-
-  increaseValue() {
-    setState(() {
-      value = value + widget.increment;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-        child: Text("Value: $value", style: TextStyle(fontSize: 22)),
-        onPressed: () {
-          increaseValue();
-        });
-  }
-}
+*/
