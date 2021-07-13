@@ -5,12 +5,10 @@ import 'package:hexcolor/hexcolor.dart';
 class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.all(3),
-          child: MyCustomForm(),
-        ),
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(3),
+        child: MyCustomForm(),
       ),
     );
   }
