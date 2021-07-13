@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:test_prohect/core/auth/login/login_form.dart';
 
-void main() => runApp(
-      MaterialApp(
-        initialRoute: '/',
-        routes: {
-          '/': (context) => LoginForm(),
-        },
-      ),
+import 'core/auth/login/components/login_form_component.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginForm(),
+      },
     );
+  }
+}

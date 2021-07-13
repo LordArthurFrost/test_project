@@ -1,42 +1,22 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-class LoginForm extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(3),
-        child: MyCustomForm(),
-      ),
-    );
-  }
-}
-
-class MyCustomForm extends StatefulWidget {
-  @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
-  }
-}
+import 'package:test_prohect/core/auth/login/components/login_form_component.dart';
 
 // Define a corresponding State class.
 // This class holds data related to the form.
-class MyCustomFormState extends State<MyCustomForm> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a `GlobalKey<FormState>`,
-  // not a GlobalKey<MyCustomFormState>.
-  final _formKey = GlobalKey<FormState>();
+
+class LoginFormPresentation extends StatelessWidget {
+  late final _key;
+
+  LoginFormPresentation(this._key);
 
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
     //final size = MediaQuery.of(context).size.height;
     return Form(
-      key: _formKey,
+      key: _key,
       child: ColoredBox(
         color: Colors.white,
         child: Column(
@@ -199,7 +179,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                       primary: HexColor('#1dbfaf'),
                       padding: EdgeInsets.fromLTRB(50, 5, 50, 5)),
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
+                    if (_key.currentState!.validate()) {
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
                       ScaffoldMessenger.of(context).showSnackBar(
