@@ -1,7 +1,7 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:test_prohect/core/auth/login/components/login_form_component.dart';
+import 'package:test_prohect/validator/validators.dart';
 
 // Define a corresponding State class.
 // This class holds data related to the form.
@@ -10,6 +10,9 @@ class LoginFormPresentation extends StatelessWidget {
   late final _key;
 
   LoginFormPresentation(this._key);
+
+  EmailInput emailValidator = EmailInput.pure();
+  PasswordInput passwordInput = PasswordInput.pure();
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +49,7 @@ class LoginFormPresentation extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(30, 0, 30, 10),
                         child: TextFormField(
-                          validator: (value) {
-                            if (!EmailValidator.validate(value!)) {
-                              return 'Please enter valid email';
-                            }
-                            return null;
-                          },
+                          validator: emailValidationFunc,
                           style: TextStyle(fontFamily: 'Roboto', fontSize: 15),
                           maxLines: 1,
                           cursorColor: Colors.black,
@@ -100,12 +98,7 @@ class LoginFormPresentation extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
                         child: TextFormField(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
+                          validator: passwordValidationFunc,
                           cursorColor: Colors.black,
                           obscureText: true,
                           style: TextStyle(fontFamily: 'Roboto', fontSize: 15),
@@ -180,8 +173,6 @@ class LoginFormPresentation extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(50, 5, 50, 5)),
                   onPressed: () {
                     if (_key.currentState!.validate()) {
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
                       ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('Processing Data')));
                     }

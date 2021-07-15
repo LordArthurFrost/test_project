@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_prohect/core/auth/login/screens/login_form_screen.dart';
+import 'package:test_prohect/validator/validators.dart';
 
 class LoginForm extends StatelessWidget {
   @override
@@ -31,5 +32,27 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
   @override
   Widget build(BuildContext context) {
     return LoginFormPresentation(_formKey);
+  }
+}
+
+/*
+
+  EmailInput emailValidator = EmailInput.pure();
+  PasswordInput passwordInput = PasswordInput.pure();
+ */
+String? emailValidationFunc(String? value) {
+  EmailInput emailValidator = EmailInput.dirty(value!);
+  if (emailValidator.valid) {
+    return null;
+  } else {
+    return "Please enter valid email";
+  }
+}
+String? passwordValidationFunc(String? value) {
+  PasswordInput passwordInput = PasswordInput.dirty(value!);
+  if (passwordInput.valid) {
+    return null;
+  } else {
+    return "Please enter valid password";
   }
 }
